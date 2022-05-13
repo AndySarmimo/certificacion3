@@ -32,7 +32,7 @@ resource "aws_launch_template" "website_lt" {
     }
   }
 
-  user_data = filebase64("${path.module}/user_data.sh")
+  user_data = data.template_file.user_data_ins.rendered
 }
 
 resource "aws_autoscaling_group" "website_asg" {

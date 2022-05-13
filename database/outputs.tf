@@ -14,5 +14,6 @@ output "database_user" {
    value = aws_db_instance.flashDB.username
 }
 output "database_pass" {
-   value = random_password.db_master_pass.result
+   value = "rootroot"
+   sensitive = true
 }

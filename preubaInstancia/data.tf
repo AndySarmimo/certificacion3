@@ -7,7 +7,7 @@ data "aws_ssm_parameters_by_path" "smm_vpc_subnets" {
 }
 
 data "template_file" "user_data_ins"{
-  template= file("${path.module}/user_data.sh")
+  template= filebase64("${path.module}/user_data.sh")
   
  vars={
     DB_HOSTNAME=var.db_hostname
