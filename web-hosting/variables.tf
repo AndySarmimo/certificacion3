@@ -1,5 +1,5 @@
 variable "bucketname"{
     type=string
-    default="s3_website_host"
+    default="s3-website-host"
     
 }

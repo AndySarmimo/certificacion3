@@ -1,7 +1,7 @@
 
 resource "local_file" "proxy_conf" {
-   filename = "../../${path.module}/proxy2.conf.js"
-#filename="../../"
+#   filename = "../../${path.module}/proxy2.conf.js"
+filename="../../angularFrontend/certi3Frontend/proxy.conf.js"
 #   file_permission = "666"
   content  = <<-EOT
    const PROXY_CONFIG ={
