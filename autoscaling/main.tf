@@ -51,9 +51,9 @@ resource "aws_autoscaling_group" "website_asg" {
   max_size           = 2
   min_size           = 1
   
-  # target_group_arns  = [
-  #   aws_lb_target_group.website_tg.arn
-  # ]
+  target_group_arns = [
+    aws_lb_target_group.website_tg.arn
+  ]
 
   launch_template {
     id      = aws_launch_template.website_lt.id
@@ -123,7 +123,7 @@ resource "aws_security_group" "smm_instance_sg_lb" {
   }
 }
 
-resource "aws_lb" "upb_alb" {
+resource "aws_alb" "upb_alb" {
   name               = "upb-alb"
   internal           = false
   load_balancer_type = "application"
@@ -132,13 +132,18 @@ resource "aws_lb" "upb_alb" {
 
 }
 
-resource "aws_autoscaling_attachment" "asg_attachment" {
-  autoscaling_group_name = aws_autoscaling_group.website_asg.id
-  lb_target_group_arn    = aws_lb_target_group.website_tg.arn
-}
+# resource "aws_autoscaling_attachment" "asg_attachment" {
+#   autoscaling_group_name = aws_autoscaling_group.website_asg.id
+#   lb_target_group_arn    = aws_lb_target_group.website_tg.arn
+# }
+
+# resource "aws_autoscaling_attachment" "asg_attachment_lb" {
+#   autoscaling_group_name = aws_autoscaling_group.website_asg.id
+#   elb                    = aws_lb.upb_alb.id
+# }
 
 resource "aws_lb_listener" "alb_listener" {
-  load_balancer_arn = aws_lb.upb_alb.arn
+  load_balancer_arn = aws_alb.upb_alb.arn
   port              = "3306"
   protocol          = "HTTP"
 

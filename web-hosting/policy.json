@@ -8,7 +8,7 @@
             "Action": [
                 "s3:GetObject"
             ],
-            "Resource": "arn:aws:s3:::${var.bucketname}/*",
+            "Resource": "arn:aws:s3:::${var.bucketname}/*"
            
         }
     ]
