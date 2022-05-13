@@ -36,15 +36,15 @@ resource "aws_db_subnet_group" "db_sub" {
   }
 }
 
-resource "random_password" "db_master_pass" {
-  length            = 10
-  special           = true
-  min_special       = 2
-  override_special  = "!#$%^&*()-_=+[]{}<>:?"
-  keepers           = {
-    pass_version  = 1
-  }
-}
+# resource "random_password" "db_master_pass" {
+#   length            = 10
+#   special           = true
+#   min_special       = 2
+#   override_special  = "!#$%^&*()-_=+[]{}<>:?"
+#   keepers           = {
+#     pass_version  = 1
+#   }
+# }
 
 
 
@@ -59,7 +59,8 @@ resource "aws_db_instance" "flashDB" {
   db_subnet_group_name = aws_db_subnet_group.db_sub.name
   db_name                 = "myFlashDB"
   username             = "root"
-  password             = random_password.db_master_pass.result
+  # password             = random_password.db_master_pass.result
+  password             = "rootroot"
   parameter_group_name = "default.mysql8.0"
   publicly_accessible = true
   snapshot_identifier = local.snapshot_db_arn

@@ -1,6 +1,6 @@
 locals {
-    instance_ami = "ami-0022f774911c1d690"
-    instance_ami_flash = 	"ami-09b846c092338654e"
+    # instance_ami = "ami-0022f774911c1d690"
+    instance_ami_flash = 	"ami-0dbbb837b1373416b"
     subnet_ids   = data.aws_ssm_parameters_by_path.smm_vpc_subnets.values
 }
 
@@ -17,7 +17,21 @@ resource "aws_launch_template" "website_lt" {
 
   # key_name = "upbKeyPair"
 
-  network_interfaces {
+ 
+
+   #user_data = data.template_file.user_data_ins.rendered
+  
+  user_data = "${base64encode(<<EOT
+  #!/usr/bin/env bash 
+  export PORT =3306 
+  export DB =${var.db_name} 
+  export DB_HOST =${var.db_hostname}  
+  export DB_USER =${var.db_user}  
+  export DB_PASS =${var.db_pass} 
+  EOT
+  )}"
+
+ network_interfaces {
     associate_public_ip_address = true
     security_groups = [aws_security_group.smm_instance_sg_lb.id]
   }
@@ -31,8 +45,6 @@ resource "aws_launch_template" "website_lt" {
       Name = "asg-instance"
     }
   }
-
-  user_data = filebase64("${path.module}/user_data.sh")
 }
 
 resource "aws_autoscaling_group" "website_asg" {
