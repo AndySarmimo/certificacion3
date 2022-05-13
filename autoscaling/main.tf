@@ -17,13 +17,11 @@ resource "aws_launch_template" "website_lt" {
 
   # key_name = "upbKeyPair"
 
- 
-
    #user_data = data.template_file.user_data_ins.rendered
   
   user_data = "${base64encode(<<EOT
   #!/usr/bin/env bash 
-  export PORT =3306 
+  export PORT =${var.db_port}
   export DB =${var.db_name} 
   export DB_HOST =${var.db_hostname}  
   export DB_USER =${var.db_user}  
@@ -65,7 +63,7 @@ resource "aws_autoscaling_group" "website_asg" {
 
 resource "aws_lb_target_group" "website_tg" {
   name        = "website-tg"
-  port     = 80
+  port     = 3306
   protocol = "HTTP"
   vpc_id   = data.aws_ssm_parameter.vpc_id_parameter.value
 }
@@ -141,7 +139,7 @@ resource "aws_autoscaling_attachment" "asg_attachment" {
 
 resource "aws_lb_listener" "alb_listener" {
   load_balancer_arn = aws_lb.upb_alb.arn
-  port              = "80"
+  port              = "3306"
   protocol          = "HTTP"
 
   default_action {
