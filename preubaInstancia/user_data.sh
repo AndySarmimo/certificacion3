@@ -1,4 +1,9 @@
-#!/bin/bash -xe
 
-DB_HOST=${DB_HOSTNAME} DB_USER=${DB_USER} DB_PASS=${DB_PASS} DB=${DB_NAME} HELLO='hola que tal'
-HI='my name is'
+
+#!/usr/bin/env bash
+
+$PORT=3306
+$DB='myFlashDB'
+$DB_HOST=my-flash-db.cj7vztwgnvy6.us-east-1.rds.amazonaws.com
+$DB_USER='root'
+$DB_PASS='rootroot'

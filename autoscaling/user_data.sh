@@ -1,3 +1,7 @@
-#!/bin/bash -xe
+  #!/usr/bin/env bash
 
-DB_HOST=${DB_HOSTNAME} DB_USER=${DB_USER} DB_PASS=${DB_PASS} DB=${DB_NAME} HELLO='hola que tal'
+export PORT =3306
+export DB =${var.db_name.value}
+export DB_HOST =${var.db_hostname.value}
+export DB_USER =${var.db_user}
+export DB_PASS =${var.db_pass}
