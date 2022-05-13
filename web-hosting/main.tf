@@ -1,3 +1,8 @@
+
+
+
+
+
 resource "aws_s3_bucket" "bucket_web" {
   bucket = var.bucketname
   acl    = "public-read"
@@ -15,11 +20,22 @@ resource "aws_s3_bucket" "bucket_web" {
 }
 
 
+# resource "aws_s3_bucket_object" "website_smm"{
+#     bucket = aws_s3_bucket.bucket_web.id
+#     key="index.html"
+#     content_type="text/html"
+#     source="${path.module}/dist/flashcard-frontend/index.html"
+#     #depends_on = [aws_s3_bucket.bucket_web]
+    
+    
+# }
 resource "aws_s3_bucket_object" "website_smm"{
     bucket = aws_s3_bucket.bucket_web.id
-    key="index.html"
-    content_type="text/html"
-    source="${path.module}/carpeta/index.html"
+    for_each = fileset("${path.module}/dist/flashcard-frontend/","*")
+    key=each.value
+    # content_type="%{if each.value == "index.html"}text/html%"
+    # content_type="text/html"
+    source="${path.module}/dist/flashcard-frontend/${each.value}"
     #depends_on = [aws_s3_bucket.bucket_web]
     
     
