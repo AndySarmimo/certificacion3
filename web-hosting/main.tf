@@ -1,5 +1,15 @@
 
-
+locals {
+  # mime_types = jsondecode(file("${path.module}/mime.json"))
+  mime_types = {
+  ".html": "text/html",
+  ".ico": "image/x-icon",
+  ".txt": "text/plain",
+  ".js": "text/javascript",
+  ".css": "text/css",
+  // ...and so forth
+}
+}
 
 
 
@@ -20,6 +30,8 @@ resource "aws_s3_bucket" "bucket_web" {
 }
 
 
+
+
 # resource "aws_s3_bucket_object" "website_smm"{
 #     bucket = aws_s3_bucket.bucket_web.id
 #     key="index.html"
@@ -33,7 +45,7 @@ resource "aws_s3_bucket_object" "website_smm"{
     bucket = aws_s3_bucket.bucket_web.id
     for_each = fileset("${path.module}/dist/flashcard-frontend/","*")
     key=each.value
-    # content_type="%{if each.value == "index.html"}text/html%"
+    content_type=lookup(local.mime_types, regex("\\.[^.]+$", each.value), null)
     # content_type="text/html"
     source="${path.module}/dist/flashcard-frontend/${each.value}"
     #depends_on = [aws_s3_bucket.bucket_web]
