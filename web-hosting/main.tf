@@ -1,14 +1,7 @@
 
 locals {
-  # mime_types = jsondecode(file("${path.module}/mime.json"))
-  mime_types = {
-  ".html": "text/html",
-  ".ico": "image/x-icon",
-  ".txt": "text/plain",
-  ".js": "text/javascript",
-  ".css": "text/css",
-  // ...and so forth
-}
+  mime_types = jsondecode(file("${path.module}/mime.json"))
+
 }
 
 
@@ -28,8 +21,6 @@ resource "aws_s3_bucket" "bucket_web" {
   }
   
 }
-
-
 
 
 # resource "aws_s3_bucket_object" "website_smm"{
