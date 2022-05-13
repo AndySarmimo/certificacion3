@@ -15,3 +15,10 @@ module "db_lb"{
 }
 
 
+# module "proxy_conf"{
+#   source="../frontend"
+#   smm_lb_arn=module.db_lb.arn_lb
+#   smm_db_port=module.db_ins.database_port
+# }
+
+

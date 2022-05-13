@@ -54,7 +54,7 @@ resource "aws_db_instance" "flashDB" {
   engine               = "mysql"
   engine_version       = "8.0"
   instance_class       = "db.t2.micro"
-  port = "3306"
+  port = 3306
   # vpc_id      = data.aws_ssm_parameter.vpc_id_parameter.value
   db_subnet_group_name = aws_db_subnet_group.db_sub.name
   db_name                 = "myFlashDB"
