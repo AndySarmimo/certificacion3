@@ -3,7 +3,7 @@
 crear una carpeta en el mismo nivel que proy2/ con el nombre de:
 angularFrontend/
 
-hacer dentro de angularFrontend:
+hacer dentro de angularFrontend:  <br />
 git clone https://github.com/AndySarmimo/certi3Frontend.git
 
 
