@@ -17,8 +17,6 @@ resource "aws_launch_template" "website_lt" {
 
   # key_name = "upbKeyPair"
 
-   #user_data = data.template_file.user_data_ins.rendered
-  
   user_data = "${base64encode(<<EOT
   #!/usr/bin/env bash 
   export PORT =${var.db_port}

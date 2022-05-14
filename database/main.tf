@@ -47,7 +47,6 @@ resource "aws_db_subnet_group" "db_sub" {
 # }
 
 
-
 resource "aws_db_instance" "flashDB" {
  identifier           =  "my-flash-db" 
   allocated_storage    = 10
@@ -71,7 +70,6 @@ resource "aws_db_instance" "flashDB" {
     ignore_changes=[snapshot_identifier]
   }
 }
-
 
 
 resource "aws_ssm_parameter" "db_id" {

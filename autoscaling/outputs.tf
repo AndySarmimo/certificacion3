@@ -1,3 +1,3 @@
-output "arn_lb" {
-   value = aws_alb.upb_alb.arn
+output "lb_name" {
+   value = aws_alb.upb_alb.dns_name
 }
