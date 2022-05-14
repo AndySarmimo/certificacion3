@@ -22,7 +22,6 @@ resource "aws_s3_bucket" "bucket_web" {
   
 }
 
-
 # resource "aws_s3_bucket_object" "website_smm"{
 #     bucket = aws_s3_bucket.bucket_web.id
 #     key="index.html"
