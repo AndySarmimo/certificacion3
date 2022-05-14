@@ -1,6 +1,15 @@
-# certificacion3
+# Proyecto certificacion3
 
-crear una carpeta en el mismo nivel que proy2/ con el nombre de:
+arn snapshot base de datos -> arn:aws:rds:us-east-1:271878697119:snapshot:flashsnapshotv2    <br />
+id imagen de backend:   ami-0dbbb837b1373416b    <br />
+
+#Porsia caso el git de backend:  <br />
+https://github.com/AndySarmimo/certi3backend.git  
+
+
+
+## Empezar con el despliegue de terraform
+crear una carpeta en el mismo nivel que proy2/ con el nombre de:  <br />
 angularFrontend/
 
 hacer dentro de angularFrontend:  <br />
