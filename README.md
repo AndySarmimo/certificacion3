@@ -30,7 +30,7 @@ terraform init , plan, apply
 <br />
 se tiene despues el proxy.conf.js  adecuado para conectar al loadbalancer desde el frontend
 <br />
-al acabar etapa se debe ir a obtene el build
+al acabar etapa se debe ir a obtene el build <br />
 5. ir al directorio  <br />
 cd angularFrontend/certi3Frontend <br />
 npm install -g @angular/cli <br />
