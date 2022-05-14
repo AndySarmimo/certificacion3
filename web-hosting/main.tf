@@ -4,8 +4,6 @@ locals {
 
 }
 
-
-
 resource "aws_s3_bucket" "bucket_web" {
   bucket = var.bucketname
   acl    = "public-read"
